@@ -1,0 +1,16 @@
+.hero {
+    text-align: center;
+    padding: 80px 20px;
+}
+h1{
+    margin: 40px 0px;
+}
+
+.btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+}
