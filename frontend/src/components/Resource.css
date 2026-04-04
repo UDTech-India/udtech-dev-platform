@@ -1,0 +1,31 @@
+.resources {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.resources h2 {
+  margin-bottom: 20px;
+}
+
+/* Buttons */
+.filters button {
+  margin: 10px;
+  padding: 8px 15px;
+  border: none;
+  background: #0f172a;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.filters button:hover {
+  background: #1e293b;
+}
+
+/* Grid layout */
+.grid {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
