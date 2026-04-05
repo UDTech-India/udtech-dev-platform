@@ -7,6 +7,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   
   font-family:'times new roman';
+   margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to right, #f8fafc, #e2e8f0);
 
 }
 
