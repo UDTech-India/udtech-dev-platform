@@ -1,10 +1,5 @@
 import React, { useState } from 'react';
 import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import Tools from "./components/Tools";
-import Community from "./components/Community";
-import ResourceCard from "./components/ResourceCard";
-import ContactForm from "./components/ContactForm";
 import Home from "./pages/Home";
 import Resources from "./pages/Resources";
 import ToolsPage from "./pages/ToolsPage";

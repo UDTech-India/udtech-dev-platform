@@ -20,7 +20,6 @@ code {
     monospace;
 }
 
-/* Global color scheme */
 :root {
   --primary-color: #0f172a;
   --secondary-color: #3b82f6;
