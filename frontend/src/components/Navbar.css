@@ -1,29 +1,103 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-
 .nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 30px;
-  background-color: #0f172a;
+  padding: 16px 30px;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
   color: white;
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.logo:hover {
+  transform: scale(1.05);
 }
 
 .menu {
   display: flex;
-  gap: 20px;
+  gap: 30px;
   list-style: none;
   cursor: pointer;
+}
+
+.menu li {
+  font-size: 16px;
+  font-weight: 500;
+  transition: var(--transition);
+  position: relative;
+  padding-bottom: 5px;
+}
+
+.menu li:hover,
+.menu li.active {
+  color: #3b82f6;
+}
+
+.menu li::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #3b82f6, #10b981);
+  transition: width 0.3s ease;
+}
+
+.menu li:hover::after,
+.menu li.active::after {
+  width: 100%;
 }
 
 .hambur {
   display: none;
 }
 
+.hamburger-btn {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: var(--transition);
+}
+
+.hamburger-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: scale(1.1);
+}
+
+.hamburger-btn:active {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
 @media screen and (max-width: 768px) {
+  .nav {
+    padding: 12px 20px;
+  }
+
+  .logo {
+    font-size: 24px;
+  }
+
   .menu-web {
     display: none;
   }
@@ -44,6 +118,37 @@
     width: 100%;
     left: 0;
     align-items: center;
-    box-shadow: 0px 5px 10px rgba(0,0,0,0.8);
+    box-shadow: var(--shadow-lg);
+    padding: 20px 0;
+    gap: 15px;
+    animation: slideDown 0.3s ease;
+  }
+
+  .menu-mobile li {
+    padding: 10px 20px;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .menu-mobile li:last-child {
+    border-bottom: none;
+  }
+
+  .menu-mobile li:hover,
+  .menu-mobile li.active {
+    background-color: #f1f5f9;
+    color: #3b82f6;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

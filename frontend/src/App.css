@@ -1,0 +1,33 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+footer {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+  margin-top: 60px;
+}
+
+footer p {
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+footer a {
+  color: #3b82f6;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+footer a:hover {
+  color: #10b981;
+  text-decoration: underline;
+}

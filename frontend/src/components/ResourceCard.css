@@ -1,0 +1,118 @@
+.resource-card {
+  background: white;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+  border: 2px solid transparent;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.resource-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6, #10b981);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.resource-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: #e0e7ff;
+}
+
+.resource-card:hover::before {
+  transform: scaleX(1);
+}
+
+.resource-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.resource-icon {
+  font-size: 32px;
+  transition: var(--transition);
+}
+
+.resource-card:hover .resource-icon {
+  transform: scale(1.2) rotate(5deg);
+}
+
+.resource-category {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.resource-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 10px 0;
+}
+
+.resource-description {
+  font-size: 14px;
+  color: #64748b;
+  line-height: 1.6;
+  margin: 10px 0 15px 0;
+  flex-grow: 1;
+}
+
+.resource-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 13px;
+  transition: var(--transition);
+  border: 2px solid transparent;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+.resource-link:hover {
+  transform: translateX(4px);
+  box-shadow: var(--shadow-md);
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+}
+
+.resource-link:active {
+  transform: translateX(2px);
+}
+
+@media screen and (max-width: 768px) {
+  .resource-card {
+    padding: 20px;
+  }
+
+  .resource-title {
+    font-size: 16px;
+  }
+
+  .resource-description {
+    font-size: 13px;
+  }
+}
