@@ -18,6 +18,7 @@ import './Resources.css';
 
 const Resources = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [searchQuery, setSearchQuery] = useState('');
 
   const resources = [
     {
@@ -120,9 +121,13 @@ const Resources = () => {
 
   const categories = ['All', 'Frontend', 'Backend', 'Database', 'DevOps', 'Tools', 'Learning'];
 
-  const filteredResources = selectedCategory === 'All' 
-    ? resources 
-    : resources.filter(r => r.category === selectedCategory);
+  const filteredResources = resources.filter(r => {
+    const matchesCategory = selectedCategory === 'All' || r.category === selectedCategory;
+    const matchesSearch =
+      r.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      r.description.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
 
   return (
     <main className="resources-page">
@@ -132,6 +137,37 @@ const Resources = () => {
       </div>
 
       <div className="resources-container">
+        <div className="search-section">
+          <div className="search-wrapper">
+            <svg className="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+            <input
+              type="text"
+              className="search-input"
+              placeholder="Search resources by title or description..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              aria-label="Search resources"
+            />
+            {searchQuery && (
+              <button
+                className="search-clear-btn"
+                onClick={() => setSearchQuery('')}
+                aria-label="Clear search"
+              >
+                ✕
+              </button>
+            )}
+          </div>
+          {searchQuery && (
+            <p className="search-results-info">
+              Showing <strong>{filteredResources.length}</strong> result{filteredResources.length !== 1 ? 's' : ''} for <span className="search-term">"{searchQuery}"</span>
+            </p>
+          )}
+        </div>
+
         <div className="filter-section">
           <h3>Filter by Category</h3>
           <div className="filter-buttons">
@@ -162,7 +198,13 @@ const Resources = () => {
 
         {filteredResources.length === 0 && (
           <div className="no-resources">
-            <p>No resources found in this category.</p>
+            <p className="no-resources-icon">🔎</p>
+            <p className="no-resources-title">No resources found</p>
+            <p className="no-resources-desc">
+              {searchQuery
+                ? `No results for "${searchQuery}". Try a different search term or category.`
+                : 'No resources found in this category.'}
+            </p>
           </div>
         )}
       </div>
