@@ -1,6 +1,9 @@
 .tools {
   padding: 80px 20px;
-  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+  background: radial-gradient(ellipse at 50% 100%, rgba(6, 182, 212, 0.08) 0%, transparent 60%),
+              var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .tools-container {
@@ -10,40 +13,38 @@
 
 .section-header {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 56px;
 }
 
 .section-title {
-  font-size: 42px;
+  font-size: 38px;
   font-weight: 800;
-  color: #0f172a;
-  margin: 0 0 15px 0;
-  letter-spacing: -1px;
+  color: var(--text-primary);
+  margin: 0 0 14px 0;
+  letter-spacing: -0.5px;
 }
 
 .section-subtitle {
-  font-size: 18px;
-  color: #64748b;
+  font-size: 17px;
+  color: var(--text-secondary);
   margin: 0;
-  font-weight: 500;
 }
 
 .tools-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
   justify-items: center;
 }
 
 .tool-card {
   width: 100%;
   max-width: 280px;
-  background: white;
-  padding: 30px 25px;
-  border-radius: 16px;
-  box-shadow: var(--shadow-md);
+  background: var(--bg-card);
+  padding: 28px 22px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
   transition: var(--transition);
-  border: 2px solid transparent;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -55,19 +56,18 @@
 .tool-card::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #3b82f6, #10b981);
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #6366f1, #06b6d4);
   transform: scaleX(0);
   transition: transform 0.3s ease;
 }
 
 .tool-card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-lg);
-  border-color: #e0e7ff;
+  transform: translateY(-6px);
+  border-color: var(--border-hover);
+  background: var(--bg-card-hover);
+  box-shadow: var(--glow-purple);
 }
 
 .tool-card:hover::before {
@@ -75,8 +75,8 @@
 }
 
 .tool-icon {
-  font-size: 40px;
-  margin-bottom: 20px;
+  font-size: 38px;
+  margin-bottom: 16px;
   transition: var(--transition);
 }
 
@@ -85,63 +85,56 @@
 }
 
 .tool-name {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
-  color: #0f172a;
-  margin: 15px 0 10px 0;
+  color: var(--text-primary);
+  margin: 0 0 10px 0;
 }
 
 .tool-description {
-  font-size: 14px;
-  color: #64748b;
-  margin: 0 0 20px 0;
-  line-height: 1.5;
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin: 0 0 18px 0;
+  line-height: 1.6;
   flex-grow: 1;
 }
 
 .tool-link {
   display: inline-block;
-  padding: 10px 20px;
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-  color: white;
-  border-radius: 8px;
+  padding: 9px 18px;
+  background: rgba(99, 102, 241, 0.15);
+  color: #a5b4fc;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: var(--radius-sm);
   text-decoration: none;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 13px;
   transition: var(--transition);
-  border: 2px solid transparent;
   cursor: pointer;
 }
 
 .tool-link:hover {
+  background: rgba(99, 102, 241, 0.3);
+  border-color: var(--accent-purple);
+  color: #c7d2fe;
   transform: translateX(4px);
-  box-shadow: var(--shadow-md);
-  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
 }
 
-.tool-link:active {
-  transform: translateX(2px);
+@media screen and (max-width: 1024px) {
+  .section-title { font-size: 32px; }
+  .tools-grid { grid-template-columns: repeat(2, 1fr); }
+  .tool-card { max-width: 100%; }
 }
 
 @media screen and (max-width: 768px) {
-  .tools {
-    padding: 60px 20px;
-  }
+  .tools { padding: 60px 16px; }
+  .section-title { font-size: 28px; }
+  .section-subtitle { font-size: 15px; }
+  .tools-grid { grid-template-columns: 1fr; gap: 14px; }
+  .tool-card { max-width: 100%; }
+}
 
-  .section-title {
-    font-size: 32px;
-  }
-
-  .section-subtitle {
-    font-size: 16px;
-  }
-
-  .tools-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .tool-card {
-    max-width: 100%;
-  }
+@media screen and (max-width: 480px) {
+  .tools { padding: 50px 14px; }
+  .section-title { font-size: 24px; }
 }
