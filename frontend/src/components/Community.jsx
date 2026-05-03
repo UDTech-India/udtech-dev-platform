@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaUsers, FaLightbulb, FaHandshake } from "react-icons/fa";
+import useScrollAnimation from '../hooks/useScrollAnimation';
+import JoinModal from './JoinModal';
 import "./Community.css";
 
 const Community = () => {
+  const ref = useScrollAnimation();
+  const [modalOpen, setModalOpen] = useState(false);
+
   const features = [
     {
       id: 1,
@@ -14,33 +19,34 @@ const Community = () => {
       id: 2,
       icon: FaLightbulb,
       title: "Build Projects",
-      description: "We believe in learning by building real-world projects and sharing knowledge with others."
+      description: "We believe in learning by building real-world projects and sharing knowledge with the community."
     },
     {
       id: 3,
       icon: FaHandshake,
       title: "Collaborate",
-      description: "Join our community to collaborate, learn, and build amazing projects together."
+      description: "Join our community to collaborate, learn, and build amazing projects together with developers worldwide."
     }
   ];
 
   return (
-    <section className="community">
+    <section className="community" ref={ref}>
       <div className="community-container">
         <div className="section-header">
-          <h2 className="section-title">Our Community</h2>
-          <p className="section-subtitle">
+          <p className="section-eyebrow reveal reveal-delay-1">Community</p>
+          <h2 className="section-title reveal reveal-delay-2">Our Community</h2>
+          <p className="section-subtitle reveal reveal-delay-3">
             Join thousands of developers and learners worldwide
           </p>
         </div>
 
         <div className="community-grid">
-          {features.map((feature) => {
+          {features.map((feature, i) => {
             const IconComponent = feature.icon;
             return (
-              <div className="community-card" key={feature.id}>
+              <div className={`community-card reveal reveal-delay-${i + 1}`} key={feature.id}>
                 <div className="community-icon">
-                  <IconComponent size={32} />
+                  <IconComponent size={28} />
                 </div>
                 <h3 className="community-card-title">{feature.title}</h3>
                 <p className="community-card-description">{feature.description}</p>
@@ -49,10 +55,16 @@ const Community = () => {
           })}
         </div>
 
-        <div className="community-cta">
-          <button className="btn btn-secondary">Join Our Community</button>
+        <div className="community-cta reveal reveal-delay-4">
+          <h3>Ready to grow with us?</h3>
+          <p>Connect with developers, access resources, and level up your skills.</p>
+          <button className="btn-cta" onClick={() => setModalOpen(true)}>
+            Join Our Community <span className="cta-arrow">→</span>
+          </button>
         </div>
       </div>
+
+      <JoinModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </section>
   );
 };

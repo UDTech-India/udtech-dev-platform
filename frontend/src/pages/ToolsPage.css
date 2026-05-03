@@ -25,6 +25,15 @@
   background-clip: text;
 }
 
+.tools-eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent-cyan);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0 0 12px 0;
+}
+
 .tools-header p {
   font-size: 17px;
   color: var(--text-secondary);

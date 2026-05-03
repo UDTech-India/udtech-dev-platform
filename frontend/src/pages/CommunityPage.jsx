@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   FaUsers, 
   FaLightbulb, 
@@ -11,9 +11,13 @@ import {
   FaGithub,
   FaDiscord
 } from 'react-icons/fa';
+import useScrollAnimation from '../hooks/useScrollAnimation';
+import JoinModal from '../components/JoinModal';
 import './CommunityPage.css';
 
 const CommunityPage = () => {
+  const ref = useScrollAnimation();
+  const [modalOpen, setModalOpen] = useState(false);
   const features = [
     {
       id: 1,
@@ -61,16 +65,16 @@ const CommunityPage = () => {
   ];
 
   return (
-    <main className="community-page">
+    <main className="community-page" ref={ref}>
       <div className="community-header">
-        <h1>Our Community</h1>
-        <p>Join thousands of developers and learners worldwide</p>
+        <p className="community-eyebrow reveal reveal-delay-1">UDTech</p>
+        <h1 className="reveal reveal-delay-2">Our Community</h1>
+        <p className="reveal reveal-delay-3">Join thousands of developers and learners worldwide</p>
       </div>
 
       <div className="community-container">
-        {/* Mission Section */}
         <section className="mission-section">
-          <div className="mission-content">
+          <div className="mission-content reveal reveal-left reveal-delay-1">
             <h2>Our Mission</h2>
             <p>
               At UDTech, our mission is to empower students and developers by providing free, 
@@ -84,7 +88,7 @@ const CommunityPage = () => {
               of inclusivity, knowledge sharing, and mutual support.
             </p>
           </div>
-          <div className="mission-image">
+          <div className="mission-image reveal reveal-right reveal-delay-2">
             <div className="mission-graphic">
               <div className="graphic-circle circle-1"></div>
               <div className="graphic-circle circle-2"></div>
@@ -100,7 +104,7 @@ const CommunityPage = () => {
             {features.map(feature => {
               const IconComponent = feature.icon;
               return (
-                <div key={feature.id} className="feature-card">
+                <div key={feature.id} className={`feature-card reveal reveal-scale reveal-delay-${feature.id}`}>
                   <div className="feature-icon">
                     <IconComponent size={40} />
                   </div>
@@ -159,7 +163,9 @@ const CommunityPage = () => {
         <section className="cta-section">
           <h2>Ready to Join Our Community?</h2>
           <p>Start your journey with UDTech today and connect with developers worldwide</p>
-          <button className="cta-btn">Join Now</button>
+          <button className="cta-btn" onClick={() => setModalOpen(true)}>
+            Join Now →
+          </button>
         </section>
 
         {/* Social Links */}
@@ -177,13 +183,16 @@ const CommunityPage = () => {
                   className="social-link"
                   title={social.label}
                 >
-                  <IconComponent size={32} />
+                  <IconComponent size={28} />
                 </a>
               );
             })}
           </div>
         </section>
       </div>
+
+      {/* Join Modal */}
+      <JoinModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </main>
   );
 };
