@@ -13,9 +13,11 @@ import {
   FaWrench,
   FaCloud
 } from 'react-icons/fa';
+import useScrollAnimation from '../hooks/useScrollAnimation';
 import './ToolsPage.css';
 
 const ToolsPage = () => {
+  const ref = useScrollAnimation();
   const tools = [
     {
       id: 1,
@@ -130,10 +132,11 @@ const ToolsPage = () => {
   const categories = [...new Set(tools.map(tool => tool.category))];
 
   return (
-    <main className="tools-page">
+    <main className="tools-page" ref={ref}>
       <div className="tools-header">
-        <h1>Developer Tools</h1>
-        <p>Essential tools and platforms to enhance your development workflow</p>
+        <p className="tools-eyebrow reveal reveal-delay-1">Dev Toolkit</p>
+        <h1 className="reveal reveal-delay-2">Developer Tools</h1>
+        <p className="reveal reveal-delay-3">Essential tools and platforms to enhance your development workflow</p>
       </div>
 
       <div className="tools-container">
@@ -143,10 +146,10 @@ const ToolsPage = () => {
             <div className="tools-grid">
               {tools
                 .filter(tool => tool.category === category)
-                .map(tool => {
+                .map((tool, index) => {
                   const IconComponent = tool.icon;
                   return (
-                    <div key={tool.id} className="tool-card">
+                    <div key={tool.id} className={`tool-card reveal reveal-delay-${Math.min(index + 1, 6)}`}>
                       <div className="tool-icon-wrapper" style={{ color: tool.color }}>
                         <IconComponent size={48} />
                       </div>

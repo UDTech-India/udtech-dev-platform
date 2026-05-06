@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ResourceCard from '../components/ResourceCard';
+import useScrollAnimation from '../hooks/useScrollAnimation';
 import { 
   FaReact, 
   FaNode, 
@@ -17,6 +18,7 @@ import {
 import './Resources.css';
 
 const Resources = () => {
+  const ref = useScrollAnimation();
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -130,13 +132,14 @@ const Resources = () => {
   });
 
   return (
-    <main className="resources-page">
+    <main className="resources-page" ref={ref}>
       <div className="resources-header">
-        <h1>Learning Resources</h1>
-        <p>Curated collection of resources to accelerate your development journey</p>
+        <p className="resources-eyebrow reveal reveal-delay-1">Learning Hub</p>
+        <h1 className="reveal reveal-delay-2">Learning Resources</h1>
+        <p className="reveal reveal-delay-3">Curated collection of resources to accelerate your development journey</p>
       </div>
 
-      <div className="resources-container">
+      <div className="resources-container reveal reveal-delay-4">
         <div className="search-section">
           <div className="search-wrapper">
             <svg className="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -184,7 +187,7 @@ const Resources = () => {
         </div>
 
         <div className="resources-grid">
-          {filteredResources.map(resource => (
+          {filteredResources.map((resource, index) => (
             <ResourceCard
               key={resource.id}
               title={resource.title}
@@ -192,6 +195,7 @@ const Resources = () => {
               category={resource.category}
               link={resource.link}
               icon={resource.icon}
+              className={`reveal reveal-scale reveal-delay-${Math.min(index + 1, 12)}`}
             />
           ))}
         </div>

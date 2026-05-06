@@ -2,7 +2,7 @@ import React from "react";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import "./ResourceCard.css";
 
-const ResourceCard = ({ title, description, category, link, icon: Icon }) => {
+const ResourceCard = ({ title, description, category, link, icon: Icon, className = '' }) => {
   const getCategoryColor = (cat) => {
     const colors = {
       'Frontend': '#3b82f6',
@@ -16,7 +16,7 @@ const ResourceCard = ({ title, description, category, link, icon: Icon }) => {
   };
 
   return (
-    <div className="resource-card">
+    <div className={`resource-card ${className}`}>
       <div className="resource-header">
         {Icon && <div className="resource-icon" style={{ color: getCategoryColor(category) }}>
           <Icon size={32} />

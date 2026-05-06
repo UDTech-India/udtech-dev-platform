@@ -2,71 +2,101 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 40px;
-  background: rgba(10, 15, 30, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border-color);
+  padding: 18px 48px;
+  background: rgba(10, 15, 30, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(99, 102, 241, 0.12);
   position: sticky;
   top: 0;
   z-index: 100;
+  transition: background 0.4s ease, box-shadow 0.4s ease, padding 0.3s ease;
+  animation: fadeInDown 0.5s ease both;
 }
 
+/* Scrolled state — darker + shadow */
+.nav-scrolled {
+  background: rgba(10, 15, 30, 0.96);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  padding: 14px 48px;
+  border-bottom-color: rgba(99, 102, 241, 0.25);
+}
+
+/* Logo */
 .logo {
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 800;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: var(--transition);
+  user-select: none;
+}
+
+.logo-accent {
   background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  cursor: pointer;
-  transition: var(--transition);
 }
 
 .logo:hover {
-  filter: brightness(1.2);
-  transform: scale(1.04);
+  transform: scale(1.05);
+  filter: brightness(1.15);
 }
 
+/* Desktop menu */
 .menu {
   display: flex;
-  gap: 36px;
+  gap: 8px;
   list-style: none;
   cursor: pointer;
 }
 
 .menu li {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--text-secondary);
   transition: var(--transition);
   position: relative;
-  padding-bottom: 4px;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.2px;
 }
 
 .menu li::after {
   content: '';
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
+  bottom: 4px;
+  left: 14px;
+  right: 14px;
   height: 2px;
   background: linear-gradient(90deg, #6366f1, #06b6d4);
-  transition: width 0.3s ease;
   border-radius: 2px;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+  transform-origin: left;
 }
 
-.menu li:hover,
+.menu li:hover {
+  color: var(--text-primary);
+  background: rgba(99, 102, 241, 0.08);
+}
+
+.menu li:hover::after {
+  transform: scaleX(1);
+}
+
 .menu li.active {
-  color: #f1f5f9;
+  color: var(--text-primary);
+  background: rgba(99, 102, 241, 0.12);
 }
 
-.menu li:hover::after,
 .menu li.active::after {
-  width: 100%;
+  transform: scaleX(1);
 }
 
+/* Hamburger */
 .hambur {
   display: none;
 }
@@ -87,53 +117,45 @@
 .hamburger-btn:hover {
   background: rgba(99, 102, 241, 0.15);
   border-color: var(--accent-purple);
+  transform: scale(1.05);
 }
 
+/* Mobile */
 @media screen and (max-width: 768px) {
-  .nav {
-    padding: 14px 20px;
-  }
-
-  .logo {
-    font-size: 22px;
-  }
-
-  .menu-web {
-    display: none;
-  }
-
-  .hambur {
-    display: inline-block;
-  }
+  .nav        { padding: 14px 20px; }
+  .nav-scrolled { padding: 12px 20px; }
+  .logo       { font-size: 20px; }
+  .menu-web   { display: none; }
+  .hambur     { display: inline-block; }
 
   .menu-mobile {
     display: flex;
     flex-direction: column;
     list-style: none;
     position: absolute;
-    top: 60px;
+    top: 100%;
     left: 0;
     width: 100%;
-    background: rgba(13, 21, 48, 0.98);
-    backdrop-filter: blur(16px);
+    background: rgba(10, 15, 30, 0.98);
+    backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border-color);
-    padding: 16px 0;
-    gap: 4px;
-    animation: slideDown 0.3s ease;
+    padding: 10px 0 16px;
+    gap: 2px;
+    animation: slideDown 0.25s ease;
     z-index: 99;
   }
 
   .menu-mobile li {
-    padding: 12px 24px;
+    padding: 13px 24px;
     color: var(--text-secondary);
     font-size: 15px;
-    border-bottom: 1px solid rgba(99, 102, 241, 0.08);
-    text-align: left;
+    border-radius: 0;
+    border-bottom: 1px solid rgba(99, 102, 241, 0.06);
   }
 
-  .menu-mobile li:last-child {
-    border-bottom: none;
-  }
+  .menu-mobile li:last-child { border-bottom: none; }
+
+  .menu-mobile li::after { display: none; }
 
   .menu-mobile li:hover,
   .menu-mobile li.active {
@@ -143,6 +165,6 @@
 }
 
 @keyframes slideDown {
-  from { opacity: 0; transform: translateY(-10px); }
+  from { opacity: 0; transform: translateY(-8px); }
   to   { opacity: 1; transform: translateY(0); }
 }

@@ -1,9 +1,11 @@
 import React from 'react';
 import ContactForm from '../components/ContactForm';
 import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaClock } from 'react-icons/fa';
+import useScrollAnimation from '../hooks/useScrollAnimation';
 import './Contact.css';
 
 const Contact = () => {
+  const ref = useScrollAnimation();
   const contactInfo = [
     {
       id: 1,
@@ -32,22 +34,23 @@ const Contact = () => {
   ];
 
   return (
-    <main className="contact-page">
+    <main className="contact-page" ref={ref}>
       <div className="contact-header">
-        <h1>Contact Us</h1>
-        <p>Have questions? We'd love to hear from you. Get in touch with our team.</p>
+        <p className="contact-eyebrow reveal reveal-delay-1">Get In Touch</p>
+        <h1 className="reveal reveal-delay-2">Contact Us</h1>
+        <p className="reveal reveal-delay-3">Have questions? We'd love to hear from you. Get in touch with our team.</p>
       </div>
 
       <div className="contact-wrapper">
-        <div className="contact-info-section">
+        <div className="contact-info-section reveal reveal-left reveal-delay-2">
           <h2>Get In Touch</h2>
           <div className="contact-info-grid">
-            {contactInfo.map(info => {
+            {contactInfo.map((info, i) => {
               const IconComponent = info.icon;
               return (
-                <div key={info.id} className="contact-info-card">
+                <div key={info.id} className={`contact-info-card reveal reveal-delay-${i + 1}`}>
                   <div className="contact-icon">
-                    <IconComponent size={32} />
+                    <IconComponent size={28} />
                   </div>
                   <h3>{info.title}</h3>
                   <p>{info.details}</p>
@@ -57,12 +60,12 @@ const Contact = () => {
           </div>
         </div>
 
-        <div className="contact-form-section">
+        <div className="contact-form-section reveal reveal-right reveal-delay-3">
           <ContactForm />
         </div>
       </div>
 
-      <div className="map-section">
+      <div className="map-section reveal reveal-delay-2">
         <h2>Find Us</h2>
         <div className="map-container">
           <iframe
