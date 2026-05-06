@@ -1,30 +1,34 @@
 .tools-page {
   min-height: 100vh;
-  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
-  padding: 60px 20px;
+  background: radial-gradient(ellipse at 80% 20%, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
+              var(--bg-primary);
+  padding: 70px 20px 80px;
 }
 
 .tools-header {
   text-align: center;
   margin-bottom: 60px;
-  max-width: 800px;
+  max-width: 700px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .tools-header h1 {
-  font-size: 48px;
+  font-size: 46px;
   font-weight: 800;
-  color: #0f172a;
-  margin: 0 0 15px 0;
+  color: var(--text-primary);
+  margin: 0 0 14px 0;
   letter-spacing: -1px;
+  background: linear-gradient(135deg, #f1f5f9 0%, #67e8f9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .tools-header p {
-  font-size: 18px;
-  color: #64748b;
+  font-size: 17px;
+  color: var(--text-secondary);
   margin: 0;
-  font-weight: 500;
 }
 
 .tools-container {
@@ -33,32 +37,32 @@
 }
 
 .tools-category {
-  margin-bottom: 60px;
+  margin-bottom: 56px;
 }
 
 .category-title {
-  font-size: 28px;
+  font-size: 22px;
   font-weight: 700;
-  color: #0f172a;
-  margin: 0 0 30px 0;
-  padding-bottom: 15px;
-  border-bottom: 3px solid #e0e7ff;
+  color: var(--text-primary);
+  margin: 0 0 24px 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-color);
   display: inline-block;
+  letter-spacing: 0.3px;
 }
 
 .tools-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
 }
 
 .tool-card {
-  background: white;
-  border-radius: 16px;
-  padding: 30px 25px;
-  box-shadow: var(--shadow-md);
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 28px 22px;
+  border: 1px solid var(--border-color);
   transition: var(--transition);
-  border: 2px solid transparent;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -70,19 +74,18 @@
 .tool-card::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #3b82f6, #10b981);
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #6366f1, #06b6d4);
   transform: scaleX(0);
   transition: transform 0.3s ease;
 }
 
 .tool-card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-lg);
-  border-color: #e0e7ff;
+  transform: translateY(-6px);
+  border-color: var(--border-hover);
+  background: var(--bg-card-hover);
+  box-shadow: var(--glow-purple);
 }
 
 .tool-card:hover::before {
@@ -90,77 +93,61 @@
 }
 
 .tool-icon-wrapper {
-  font-size: 48px;
-  margin-bottom: 20px;
+  font-size: 44px;
+  margin-bottom: 16px;
   transition: var(--transition);
 }
 
 .tool-card:hover .tool-icon-wrapper {
-  transform: scale(1.2) rotate(5deg);
+  transform: scale(1.15) rotate(5deg);
 }
 
 .tool-name {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
-  color: #0f172a;
-  margin: 15px 0 10px 0;
+  color: var(--text-primary);
+  margin: 0 0 10px 0;
 }
 
 .tool-description {
-  font-size: 14px;
-  color: #64748b;
+  font-size: 13px;
+  color: var(--text-secondary);
   margin: 0 0 20px 0;
-  line-height: 1.5;
+  line-height: 1.6;
   flex-grow: 1;
 }
 
 .tool-btn {
   display: inline-block;
-  padding: 10px 20px;
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-  color: white;
-  border-radius: 8px;
+  padding: 9px 20px;
+  background: rgba(99, 102, 241, 0.15);
+  color: #a5b4fc;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: var(--radius-sm);
   text-decoration: none;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 13px;
   transition: var(--transition);
-  border: 2px solid transparent;
   cursor: pointer;
 }
 
 .tool-btn:hover {
+  background: rgba(99, 102, 241, 0.3);
+  border-color: var(--accent-purple);
+  color: #c7d2fe;
   transform: translateX(4px);
-  box-shadow: var(--shadow-md);
-  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
 }
 
-.tool-btn:active {
-  transform: translateX(2px);
+@media screen and (max-width: 1024px) {
+  .tools-header h1 { font-size: 38px; }
+  .tools-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media screen and (max-width: 768px) {
-  .tools-page {
-    padding: 40px 20px;
-  }
-
-  .tools-header h1 {
-    font-size: 32px;
-  }
-
-  .tools-header p {
-    font-size: 16px;
-  }
-
-  .category-title {
-    font-size: 22px;
-  }
-
-  .tools-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .tool-card {
-    padding: 25px 20px;
-  }
+  .tools-page { padding: 50px 16px 60px; }
+  .tools-header h1 { font-size: 30px; }
+  .tools-header p { font-size: 15px; }
+  .category-title { font-size: 18px; }
+  .tools-grid { grid-template-columns: 1fr; gap: 14px; }
+  .tool-card { padding: 22px 18px; }
 }
