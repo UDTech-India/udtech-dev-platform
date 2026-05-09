@@ -3,6 +3,26 @@
   border-top: 1px solid rgba(99, 102, 241, 0.15);
 }
 
+[data-theme="light"] .footer {
+  background: #f1f5f9;
+  border-top-color: rgba(99, 102, 241, 0.15);
+}
+
+[data-theme="light"] .footer-copy,
+[data-theme="light"] .footer-made {
+  color: #94a3b8;
+}
+
+[data-theme="light"] .footer-social-link {
+  color: #64748b;
+  border-color: rgba(99, 102, 241, 0.2);
+  background: rgba(255, 255, 255, 0.7);
+}
+
+[data-theme="light"] .footer-divider {
+  background: rgba(99, 102, 241, 0.12);
+}
+
 .footer-inner {
   max-width: 1200px;
   margin: 0 auto;
