@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Resources from "./pages/Resources";
 import ToolsPage from "./pages/ToolsPage";
@@ -31,6 +32,7 @@ function App() {
     <div className="app">
       <Navbar currentPage={currentPage} setCurrentPage={setCurrentPage} />
       {renderPage()}
+      <Footer />
     </div>
   );
 }
