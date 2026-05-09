@@ -257,3 +257,72 @@
   }
   .modal-title { font-size: 20px; }
 }
+
+/* ── Light mode fixes ────────────────────────────────── */
+[data-theme="light"] .modal-overlay {
+  background: rgba(15, 23, 42, 0.55);
+}
+
+[data-theme="light"] .modal-box {
+  background: #ffffff;
+  border-color: rgba(99, 102, 241, 0.25);
+  box-shadow:
+    0 0 0 1px rgba(99, 102, 241, 0.08),
+    0 30px 80px rgba(0, 0, 0, 0.15),
+    0 0 40px rgba(99, 102, 241, 0.06);
+}
+
+[data-theme="light"] .modal-title {
+  color: #0f172a;
+}
+
+[data-theme="light"] .modal-subtitle {
+  color: #64748b;
+}
+
+[data-theme="light"] .modal-field label {
+  color: #94a3b8;
+}
+
+[data-theme="light"] .modal-field input,
+[data-theme="light"] .modal-field textarea {
+  background: #f8fafc;
+  border-color: rgba(99, 102, 241, 0.2);
+  color: #0f172a;
+}
+
+[data-theme="light"] .modal-field input::placeholder,
+[data-theme="light"] .modal-field textarea::placeholder {
+  color: #cbd5e1;
+}
+
+[data-theme="light"] .modal-field input:focus,
+[data-theme="light"] .modal-field textarea:focus {
+  background: #ffffff;
+}
+
+[data-theme="light"] .modal-success h3 {
+  color: #0f172a;
+}
+
+[data-theme="light"] .modal-success p {
+  color: #64748b;
+}
+
+[data-theme="light"] .modal-close {
+  color: #64748b;
+}
+
+[data-theme="light"] .modal-close:hover {
+  color: #0f172a;
+}
+
+/* Bug fix: spinner will-change for smooth animation */
+.spinner {
+  will-change: transform;
+}
+
+/* Bug fix: blob will-change for GPU acceleration */
+.blob {
+  will-change: transform;
+}

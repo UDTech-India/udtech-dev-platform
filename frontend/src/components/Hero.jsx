@@ -2,7 +2,7 @@ import React from 'react';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 import "./Hero.css";
 
-const Hero = () => {
+const Hero = ({ setCurrentPage }) => {
   const ref = useScrollAnimation();
 
   const stats = [
@@ -37,10 +37,19 @@ const Hero = () => {
         </p>
 
         <div className="hero-buttons reveal reveal-delay-4">
-          <button className="btn btn-primary">
+          {/* Bug fix: buttons now navigate to correct pages */}
+          <button
+            className="btn btn-primary"
+            onClick={() => setCurrentPage && setCurrentPage('resources')}
+          >
             Get Started <span className="btn-arrow">→</span>
           </button>
-          <button className="btn btn-secondary">Explore Resources</button>
+          <button
+            className="btn btn-secondary"
+            onClick={() => setCurrentPage && setCurrentPage('resources')}
+          >
+            Explore Resources
+          </button>
         </div>
 
         <div className="hero-stats reveal reveal-delay-5">

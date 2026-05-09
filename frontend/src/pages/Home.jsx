@@ -4,10 +4,10 @@ import Tools from '../components/Tools';
 import Community from '../components/Community';
 import './Home.css';
 
-const Home = () => {
+const Home = ({ setCurrentPage }) => {
   return (
     <main className="home-page">
-      <Hero />
+      <Hero setCurrentPage={setCurrentPage} />
       <Tools />
       <Community />
     </main>
