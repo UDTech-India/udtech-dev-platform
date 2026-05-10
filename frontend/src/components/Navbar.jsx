@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from "react-icons/md";
+import { FiSun, FiMoon } from "react-icons/fi";
 import "./Navbar.css";
 
-const Navbar = ({ currentPage, setCurrentPage }) => {
+const Navbar = ({ currentPage, setCurrentPage, isDark, toggleTheme }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -28,10 +29,12 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
 
   return (
     <nav className={`nav ${scrolled ? 'nav-scrolled' : ''}`}>
+      {/* Logo */}
       <h2 className="logo" onClick={() => handleNavClick('home')}>
         UD<span className="logo-accent">Tech</span>
       </h2>
 
+      {/* Desktop menu */}
       <ul className={`menu ${showMenu ? "menu-mobile" : "menu-web"}`}>
         {navItems.map((item) => (
           <li
@@ -44,14 +47,32 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
         ))}
       </ul>
 
-      <div className="hambur">
+      {/* Right side: theme toggle + hamburger */}
+      <div className="nav-right">
+        {/* Theme toggle button */}
         <button
-          className="hamburger-btn"
-          onClick={() => setShowMenu(!showMenu)}
-          aria-label="Toggle menu"
+          className="theme-toggle"
+          onClick={toggleTheme}
+          aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+          title={isDark ? 'Light mode' : 'Dark mode'}
         >
-          {showMenu ? <MdClose size={22} /> : <GiHamburgerMenu size={22} />}
+          <span className={`toggle-track ${isDark ? 'dark' : 'light'}`}>
+            <span className="toggle-thumb">
+              {isDark ? <FiMoon size={11} /> : <FiSun size={11} />}
+            </span>
+          </span>
         </button>
+
+        {/* Hamburger (mobile only) */}
+        <div className="hambur">
+          <button
+            className="hamburger-btn"
+            onClick={() => setShowMenu(!showMenu)}
+            aria-label="Toggle menu"
+          >
+            {showMenu ? <MdClose size={22} /> : <GiHamburgerMenu size={22} />}
+          </button>
+        </div>
       </div>
     </nav>
   );
