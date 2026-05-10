@@ -22,9 +22,12 @@ const PageLoader = () => (
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
 
+  // Initialise from localStorage, default = dark
+  // Bug fix: validate saved value before using it
   const [isDark, setIsDark] = useState(() => {
     const saved = localStorage.getItem('theme');
-    return saved ? saved === 'dark' : true;
+    if (saved === 'dark' || saved === 'light') return saved === 'dark';
+    return true; // default dark
   });
 
   useEffect(() => {
@@ -42,7 +45,7 @@ function App() {
 
   const renderPage = () => {
     switch (currentPage) {
-      case 'home':      return <Home />;
+      case 'home':      return <Home setCurrentPage={setCurrentPage} />;
       case 'resources': return <Resources />;
       case 'tools':     return <ToolsPage />;
       case 'community': return <CommunityPage />;

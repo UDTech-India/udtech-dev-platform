@@ -76,19 +76,19 @@ const ContactForm = () => {
         if (data.success) {
           setSubmitted(true);
           setFormData({ name: "", email: "", message: "" });
+          setErrors({}); // Bug fix: clear errors on successful submit
 
           setTimeout(() => setSubmitted(false), 5000);
         } else {
-          alert("Failed to send message ❌");
+          alert("Failed to send message. Please try again.");
         }
 
         setLoading(false);
 
       } catch (error) {
-        console.log(error);
+        console.error("Contact form error:", error); // Bug fix: console.error not console.log
         setLoading(false);
-        setSubmitted(false);
-        alert("Server error ❌");
+        alert("Could not reach the server. Please check your connection.");
       }
     } else {
       setErrors(newErrors);

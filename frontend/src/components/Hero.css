@@ -203,9 +203,8 @@
 
 /* Stats row */
 .hero-stats {
-  display: flex;
-  gap: 0;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
   background: rgba(17, 24, 39, 0.6);
@@ -216,14 +215,13 @@
 }
 
 .stat-item {
-  flex: 1;
   padding: 18px 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 4px;
   border-right: 1px solid var(--border-color);
-  transition: var(--transition);
+  transition: background 0.25s ease;
 }
 
 .stat-item:last-child { border-right: none; }
@@ -272,9 +270,12 @@
   .hero-title { font-size: 28px; }
   .hero-buttons { flex-direction: column; align-items: center; }
   .btn { width: 100%; max-width: 280px; justify-content: center; }
-  .hero-stats { flex-wrap: wrap; }
-  .stat-item { min-width: 50%; border-bottom: 1px solid var(--border-color); }
-  .stat-item:nth-child(odd) { border-right: 1px solid var(--border-color); }
-  .stat-item:nth-child(even) { border-right: none; }
-  .stat-item:nth-last-child(-n+2) { border-bottom: none; }
+  /* Bug fix: 2-column grid on mobile with clean borders */
+  .hero-stats {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 100%;
+  }
+  .stat-item:nth-child(2) { border-right: none; }
+  .stat-item:nth-child(1),
+  .stat-item:nth-child(2) { border-bottom: 1px solid var(--border-color); }
 }

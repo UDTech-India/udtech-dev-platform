@@ -149,7 +149,7 @@ const ToolsPage = () => {
                 .map((tool, index) => {
                   const IconComponent = tool.icon;
                   return (
-                    <div key={tool.id} className={`tool-card reveal reveal-delay-${Math.min(index + 1, 6)}`}>
+                    <div key={tool.id} className={`tool-card reveal reveal-delay-${Math.min(index + 1, 12)}`}>
                       <div className="tool-icon-wrapper" style={{ color: tool.color }}>
                         <IconComponent size={48} />
                       </div>
