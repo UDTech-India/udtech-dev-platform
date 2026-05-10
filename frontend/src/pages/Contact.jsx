@@ -50,10 +50,12 @@ const Contact = () => {
               return (
                 <div key={info.id} className={`contact-info-card reveal reveal-delay-${i + 1}`}>
                   <div className="contact-icon">
-                    <IconComponent size={28} />
+                    <IconComponent size={20} />
                   </div>
-                  <h3>{info.title}</h3>
-                  <p>{info.details}</p>
+                  <div className="contact-info-text">
+                    <h3>{info.title}</h3>
+                    <p>{info.details}</p>
+                  </div>
                 </div>
               );
             })}
