@@ -67,6 +67,9 @@
   border-radius: var(--radius-md);
   border: 1px solid var(--border-color);
   transition: var(--transition);
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
 }
 
 .contact-info-card:hover {
@@ -77,27 +80,36 @@
 }
 
 .contact-icon {
-  font-size: 28px;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  border-radius: 10px;
+  background: rgba(99, 102, 241, 0.12);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--accent-purple);
-  margin-bottom: 12px;
+  font-size: 18px;
   transition: var(--transition);
 }
 
 .contact-info-card:hover .contact-icon {
-  transform: scale(1.2);
+  background: rgba(99, 102, 241, 0.2);
+  transform: scale(1.08);
 }
 
-.contact-info-card h3 {
-  font-size: 16px;
+.contact-info-text h3 {
+  font-size: 15px;
   font-weight: 700;
   color: var(--text-primary);
-  margin: 0 0 8px 0;
+  margin: 0 0 6px 0;
 }
 
-.contact-info-card p {
+.contact-info-text p {
   font-size: 14px;
   color: var(--text-secondary);
-  line-height: 1.8;
+  line-height: 1.7;
   margin: 0;
   white-space: pre-line;
 }

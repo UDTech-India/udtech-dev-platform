@@ -25,6 +25,18 @@
   border-radius: 3px 3px 0 0;
 }
 
+/* Subtle inner glow on hover */
+.resource-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-lg);
+  background: radial-gradient(ellipse at 50% 0%, rgba(99,102,241,0.06) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
 .resource-card:hover {
   transform: translateY(-8px);
   border-color: var(--border-hover);
@@ -34,6 +46,10 @@
 
 .resource-card:hover::before {
   transform: scaleX(1);
+}
+
+.resource-card:hover::after {
+  opacity: 1;
 }
 
 .resource-header {
