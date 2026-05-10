@@ -1,28 +1,42 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import Home from "./pages/Home";
-import Resources from "./pages/Resources";
-import ToolsPage from "./pages/ToolsPage";
-import CommunityPage from "./pages/CommunityPage";
-import Contact from "./pages/Contact";
 import './App.css';
+
+// ── Lazy load pages (only downloaded when first visited) ──
+const Home        = lazy(() => import("./pages/Home"));
+const Resources   = lazy(() => import("./pages/Resources"));
+const ToolsPage   = lazy(() => import("./pages/ToolsPage"));
+const CommunityPage = lazy(() => import("./pages/CommunityPage"));
+const Contact     = lazy(() => import("./pages/Contact"));
+
+// ── Minimal loading fallback ──────────────────────────────
+const PageLoader = () => (
+  <div className="page-loader" aria-label="Loading">
+    <span className="loader-dot"></span>
+    <span className="loader-dot"></span>
+    <span className="loader-dot"></span>
+  </div>
+);
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
 
-  // Initialise from localStorage, default = dark
   const [isDark, setIsDark] = useState(() => {
     const saved = localStorage.getItem('theme');
     return saved ? saved === 'dark' : true;
   });
 
-  // Apply data-theme to <html> whenever isDark changes
   useEffect(() => {
     const theme = isDark ? 'dark' : 'light';
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
   }, [isDark]);
+
+  // Scroll to top on page change
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [currentPage]);
 
   const toggleTheme = () => setIsDark(prev => !prev);
 
@@ -45,7 +59,9 @@ function App() {
         isDark={isDark}
         toggleTheme={toggleTheme}
       />
-      {renderPage()}
+      <Suspense fallback={<PageLoader />}>
+        {renderPage()}
+      </Suspense>
       <Footer />
     </div>
   );
